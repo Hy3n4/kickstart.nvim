@@ -289,6 +289,20 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- Keymaps for Nvimtree
+vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>m', ':NvimTreeFindFileToggle<CR>', { noremap = true })
+
+vim.keymap.set('n', '<leader>f', ':Format<CR>', { noremap = true })
+vim.keymap.set('n', '<leader>F', ':FormatWrite<CR>', { noremap = true })
+
+-- [[ Format on save ]]
+vim.api.nvim_create_augroup("__formatter__", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = "__formatter__",
+  command = ":FormatWrite",
+})
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
